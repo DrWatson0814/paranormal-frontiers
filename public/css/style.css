@@ -1,0 +1,16 @@
+body {
+    display: grid;
+    grid-template-columns: 12.5px 1fr 12.5px;
+    height: 100vh;
+    margin: 0px;
+    padding: 0;
+}
+
+.main-title {
+    height: 300px;
+    background-image:url("/public/img/paranormal-frontiers-banner-logo.jpg")
+}
+
+.banner-logo {
+    height: 300px;
+},''''
