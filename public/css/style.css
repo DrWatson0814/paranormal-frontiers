@@ -1,16 +1,33 @@
 body {
     display: grid;
     grid-template-columns: 12.5px 1fr 12.5px;
+    grid-template-rows: 37.5px 12.5px 100px 12.5px 187.5px 12.5px 187.5px;
     height: 100vh;
     margin: 0px;
     padding: 0;
 }
 
+.everything-under-here {
+    height: 100vh;
+}
+
+.logo-img {
+    grid-row: 3;
+    height: 100px;
+    width: 225px;
+}
+
 .main-title {
     height: 300px;
-    background-image:url("/public/img/paranormal-frontiers-banner-logo.jpg")
+    /* background-image:url("/public/img/paranormal-frontiers-banner-logo.jpg") */
 }
 
 .banner-logo {
-    height: 300px;
-},''''
+    grid-row: 1;
+    height: 150px;
+}
+
+.vod {
+    grid-row: 7;
+    height: 250px;
+}
