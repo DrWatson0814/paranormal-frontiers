@@ -11,6 +11,11 @@ body {
     height: 100vh;
 }
 
+.player {
+    width: 640px;
+    height: 360px;
+}
+
 .logo-img {
     grid-row: 3;
     height: 100px;

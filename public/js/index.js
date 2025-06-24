@@ -1,21 +1,39 @@
-const tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-const firstScriptTag =document.getElementsByTagName('script');
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
-let player;
+ 
+
+
+    // var tag = document.createElement('script');
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // var firstScriptTag = document.getElementsByTagName('script') [0];
+    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// async function youTubeFetch() {
+//     const response = await fetch('https://www.youtube.com/iframe_api');
+//     const data = await response.json();
+//     console.log(data);
+
+// }
+
+// youTubeFetch();
+
+var player;
+
 
 function onYoutubeIframeAPIReady() {
-    player = new onYoutubeIframeAPIReady.Player('player', {
+    player = new YT.Player('player', {
         height: '390',
         width: '640',
-        videoId: 'M71c1UVf-VE',
+        videoId: 'v6RWSfGiDuQ',
         playerVars: {
-            'playsinline': 1
+            'playsinline': 1,
+            'autoplay': 0,
+            'controls': 1,
+            'showInfo': 0,
+            'rel': 0,
         },
         events: {
-            'onReady': onplayerReady,
+            'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
         }
     });
