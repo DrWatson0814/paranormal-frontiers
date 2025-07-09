@@ -56,3 +56,18 @@ function onPlayerStateChange() {
 function stopVideo() {
     player.stopVideo();
 }
+
+
+
+//* New Video on Refresh //
+
+"use strict";
+
+const elements = {
+const hauntedPlace: .getElementById('haunted-places-api');
+};
+
+
+async function getHauntedPlaces() {
+    const response = await fetch('')
+}

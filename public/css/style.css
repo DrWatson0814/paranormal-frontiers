@@ -5,33 +5,69 @@
     box-sizing:border-box;
 }
 
+.nosifer-regular {
+  font-family: "Nosifer", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 body {
+    display: grid;
+    grid-template-rows: 225px auto 1fr auto;
+    grid-template-columns: 25px 1fr 25px;;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
+    background: radial-gradient(circle at top, rgb(54, 85, 92) 25%, rgb(05, 54, 50) 40%,black 100%);
+    overflow-x: hidden;
+
 }
 
-.container {
-    border: 2px solid #555;
-    padding:8px;
-    min-height: 100vh;
-}
-
-header {
+.header {
+    grid-column: 2; 
+    grid-row: 1;
+    min-height: 100%;
+    margin: 0 0 9p0x 0;
     border: 2px solid  #dd0808;
-    background-color: #ff6666;
-}
-aside  {
-    border: 2px solid  #0ba7c6;"> "
-    background-color: #74ddf2;
+    align-content: left;
+    background: url("../img/cropped-logo.png") no-repeat center center / contain;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-main {
+nav {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around; 
+    list-style-type: none;
+}
+
+.main-container {
+    grid-row: 3;
+    grid-column: 2;
     border: 2px solid  #6f09e5;
-    background-color: #b880f7;
+    /* background-color: #b880f7; */
 }
 
 footer {
+    grid-row: 4;
+    grid-column: 2;
     border: 2px solid  #c4be0d;
     background-color: #f7f380;
+}
+
+.h3-contact-title {
+    font-family: "Nosifer", sans-serif;
+    text-align: center;
+}
+
+.p-contact-text {
+    text-align: start;
 }
