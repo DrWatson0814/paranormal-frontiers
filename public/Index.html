@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script') [0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    </script>
-    <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="/public/css/reset.css">
-    <title>Paranormal Frontiers</title>
-</head>
-<body>
-    <nav>
-       <div class="dropmenu">
-           <label for="dropdown">Menu</label>
-            <select id="dropdown">
-                <option value="option1">Home</option>
-                <option value="option2">Gear</option>
-                <option value="option3">Investigation</option>
-                <option value="option4">Knowledge Base/Research</option>
-            </select> 
-        </div> 
-    </nav>
-    <main class="everything-under-here">
-        <div class="player"></div>
-        <!-- <div class="banner-logo"><img src="/public/img/paranormal-frontiers-banner-logo.jpg" alt="company logo"></img></div> -->
-        <!-- <iframe id="player" type="text/html" width="640" height="390"src="http://www.youtube.com/embed/VabClSuOi_8?enablejsapi=1&origin=http://example.com"frameborder="0"></iframe>        -->
-        <!-- <article class="atf">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</article> -->
-        <article class="ote"></article>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paranormal-Frontiers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap"   rel="stylesheet">
+    <link href="/public/css/style.css" rel="stylesheet" />
+    <link href="/public/css/reset.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header">
+    </header>
+      <nav class="nav-btn-grp">
+        <ul>
+          <li class="btn-home">Home</li>
+          <li class="btn-gear">Gear</li>
+          <li class="btn-investigation">Investigate</li>
+          <li class="btn-research">Research</li>
+        </ul>
+      </nav>
+    <main class="main-container">
+      <div id="youtube-api"></div>
+      <div id="haunted-places-api"></div>
     </main>
-    <footer></footer>
-</body>
+  <footer class="footer">
+      <h3 class="h2-contact-title">Place Holder Text</h3>
+      <p class="p-contact-text">THERE IS GOING TO BE AWESOME CODE IN THIS SPOT VERY SOON!!!</p>
+  </footer>
+    <script src="/public/js/index.js"></script>
+  </body>
 </html>

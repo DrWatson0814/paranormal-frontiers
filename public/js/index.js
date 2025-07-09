@@ -67,7 +67,17 @@ const elements = {
 const hauntedPlace: .getElementById('haunted-places-api');
 };
 
+const nuggs = url('/api/haunted_places.csv')
 
-async function getHauntedPlaces() {
-    const response = await fetch('')
+
+function loopHauntedPlaces() {
+    let seqNum = 0;
+    setInterval(() => {
+        if(seqNUm < nuggs.length) {
+            elements.hauntedPlace.textContent = nuggs[].hauntedPlace
+            nuggs++;
+        } else {
+            nuggs = 0;
+        }
+    }), 
 }
