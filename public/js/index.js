@@ -17,45 +17,45 @@
 
 // youTubeFetch();npm
 
-var player;
+// var player;
 
 
-function onYoutubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '390',
-        width: '640',
-        videoId: AHA!!!'v6RWSfGiDuQ',
-        playerVars: {
-            'playsinline': 1,
-            'autoplay': 0,
-            'controls': 1,
-            'showInfo': 0,
-            'rel': 0,
-        },
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
+// function onYoutubeIframeAPIReady() {
+//     player = new YT.Player('player', {
+//         height: '390',
+//         width: '640',
+//         videoId: 'v6RWSfGiDuQ',
+//         playerVars: {
+//             'playsinline': 1,
+//             'autoplay': 0,
+//             'controls': 1,
+//             'showInfo': 0,
+//             'rel': 0,
+//         },
+//         events: {
+//             'onReady': onPlayerReady,
+//             'onStateChange': onPlayerStateChange
+//         }
+//     });
+// }
 
 
-function onPlayerReady(event) {
-    event.target.playVideo();
-}
+// function onPlayerReady(event) {
+//     event.target.playVideo();
+// }
 
 
-let done = false;
-function onPlayerStateChange() {
-    if(event.data == YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        done = true;    
-    }
-}
+// let done = false;
+// function onPlayerStateChange() {
+//     if(event.data == YT.PlayerState.PLAYING && !done) {
+//         setTimeout(stopVideo, 6000);
+//         done = true;    
+//     }
+// }
 
-function stopVideo() {
-    player.stopVideo();
-}
+// function stopVideo() {
+//     player.stopVideo();
+// }
 
 
 
@@ -64,20 +64,21 @@ function stopVideo() {
 "use strict";
 
 const elements = {
-const hauntedPlace: .getElementById('haunted-places-api');
+  hauntedPlace: document.getElementsByClassName("haunted"),
 };
 
-const nuggs = url('/api/haunted_places.csv')
+const nuggs = [];
 
 
 function loopHauntedPlaces() {
     let seqNum = 0;
     setInterval(() => {
         if(seqNUm < nuggs.length) {
-            elements.hauntedPlace.textContent = nuggs[].hauntedPlace
+            elements.hauntedPlace.textContent = nuggs[0].hauntedPlace
             nuggs++;
         } else {
             nuggs = 0;
         }
-    }), 
+    }, 3000);
 }
+loopHauntedPlaces()
