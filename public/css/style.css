@@ -56,6 +56,11 @@ ul {
     /* background-color: #b880f7; */
 }
 
+
+.haunted {
+    height: 50px;
+}
+
 footer {
     grid-row: 4;
     grid-column: 2;
