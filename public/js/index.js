@@ -1,21 +1,40 @@
 
 
- //* YouTube Fetch
+//  //* YouTube Fetch
 
 
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script') [0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  
 
-async function youTubeFetch() {
-    const response = await fetch('https://www.youtube.com/iframe_api');
-    const data = await response.json();
-    console.log(data);
+async function youtubeFetch() {
 
-}
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/fetchVideos');
+        const data = await response.json();
+        const youtubeVideos = data.videos;
+    
+        const videoDiv = document.getElementById('youtube');
+        
+    
+        youtubeVideos.forEach(video => {
+            const youtubeId = video.id.videoId;
+            if(youtubeId) {
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube.com/embed/${youtubeId}`;
+                iframe.width = '506';
+                iframe.height = '315';
+                iframe.frameBorder = '0';
+                iframe.allow = 'autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreencreen = 'true';
+    
+                videoDiv.appendChild(iframe);
+            }
+        });
+    } catch (error) {
+        console.error("Couldn't fetch videos")
+    }
+};
 
-youTubeFetch();npm
+document.addEventListener('DOMContentLoaded', youtubeFetch);
 
 var player;
 
@@ -55,40 +74,32 @@ function onPlayerStateChange() {
 
 function stopVideo() {
     player.stopVideo();
-}
+};
 
 
 
-//* New Video on Refresh //
+//* New Place on Refresh //
 
 "use strict"
 
-const csvURL = 'http://localhost:8080/public/haunted.places.csv';
 
-Papa.Parser(csvURL, {
-    download:true,
-    header:true,
-    dynamicTyping: true,
-    complete: function(results) {
-        const hauntedPLaces = results.data;
-        const hauntedList = document.getElementsByClassName('haunted'); 
-        console.log(hauntedList);
-        
+
+
+ async function fetchHauntedPlace() {
+
+    const response = await fetch('http://localhost:8080/api/v1/getHauntedPlace');
+    const data  = await response.json();
+    const currentPlace = data.data;
+
+    console.log(currentPlace);
+    
+    const hauntedDiv = document.querySelector('.haunted');
+    if(currentPlace) {
+        hauntedDiv.innerHTML = `
+        <h3>Location:${currentPlace.city}, ${currentPlace.state}</h3>
+        <p>${currentPlace.description}</p>
+        `;
     }
-});
+};
 
-
-const elements = document.getElementsByClassName('haunted'),
-
-async function getHauntedPlace() {
-    const endpoint = '/public/haunted_places.csv';
-    const hauntedPlaces = [];
-
-    const response = await fetch(endpoint);
-    const hauntedPlace = response.json();
-    const currentPlace = hauntedPlace.textCOntent(currentPlace);
-    const randomPlace = Math.floor(Math.random() * hauntedPlaces.length);
-    return randomPlace;
-}
-    
-    
+document.addEventListener('DOMContentLoaded', fetchHauntedPlace);

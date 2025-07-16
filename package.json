@@ -12,10 +12,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "help": "^3.0.2",
     "mysql2": "^3.14.1",
+    "node-fetch": "^3.3.2",
     "nodemon": "^3.1.10",
     "papaparse": "^5.5.3",
     "python3": "^0.0.1"
