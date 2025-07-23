@@ -1,0 +1,25 @@
+@font-face {
+    font-display: swap;
+    font-family: "swordskull-font";
+    src: url('/fonts/swordskull-font/SwordskullPersonalUse-axqz5.ttf')
+}
+
+/* Global Font CSS */
+
+.nav-btn-grp {
+    color: white;
+}
+
+/* Home Page Font CSS*/
+
+#viewer-title {
+    color:white;
+    grid-row: 2;
+    text-align: center;
+}
+
+#haunted-title {
+    color:white;
+    grid-row: 7;
+    text-align: center;
+}

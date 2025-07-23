@@ -20,8 +20,8 @@ async function youtubeFetch() {
             if(youtubeId) {
                 const iframe = document.createElement('iframe');
                 iframe.src = `https://www.youtube.com/embed/${youtubeId}`;
-                iframe.width = '506';
-                iframe.height = '315';
+                iframe.width = '300';
+                iframe.height = '150';
                 iframe.frameBorder = '0';
                 iframe.allow = 'autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.allowFullscreencreen = 'true';

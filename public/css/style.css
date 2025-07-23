@@ -1,4 +1,4 @@
-/* Clean Start */
+/* Clean Start and styling assets and pulls */
 * {
     padding: 0;
     margin: 0;
@@ -11,7 +11,7 @@
   font-style: normal;
 }
 
-
+/* Main Sections */
 
 body {
     display: grid;
@@ -50,16 +50,12 @@ ul {
 }
 
 .main-container {
+    display: grid;
+    grid-template-rows: repeat(3, 25px) 200px repeat(4, 25px); 
     grid-row: 3;
     grid-column: 2;
-    border: 2px solid  #6f09e5;
+    /* border: 2px solid  #6f09e5; */
     /* background-color: #b880f7; */
-}
-
-
-.haunted {
-    height: 50px;
-    color: white;
 }
 
 footer {
@@ -77,3 +73,30 @@ footer {
 .p-contact-text {
     text-align: start;
 }
+
+iframe {
+    /* width: 87vw; */
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* API Containers */
+
+
+.haunted {
+    grid-row: 9;
+    height: 50px;
+    color: white;
+}
+
+#youtube {
+    grid-row: 4;
+    justify-items: center;
+}
+
+
+
+
+
