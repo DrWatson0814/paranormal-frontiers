@@ -106,24 +106,6 @@ app.get('/api/v1/wikiSearch', async (request, response) => {
 });
 
 
-
-async function wikiText(title) {
-    try {
-        const endpoint = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=${title}&format=json&origin=https://localhost:8080';
-
-        const response = await fetch(endpoint);
-        const dataText = await response.json();
-        const pageID = Object.keys(dataText.query.pages)[0];
-        const extracted = dataText.query.pages[pageID].extracted;
-        console.log(extracted);
-        return extracted;
-    }
-    catch(error) {
-        console.error("Paranormal Interference - Text Extraction Failed", error);
-    }
-
-}
-
 app.get('/api/v1/wikiText', async (request, response) => {
         try {
         const title = request.query.title;
@@ -139,10 +121,7 @@ app.get('/api/v1/wikiText', async (request, response) => {
     catch(error) {
         console.error("Paranormal Interference - Text Extraction Failed", error);
     }
-
-
-
-})
+});
 
 
 

@@ -29,10 +29,7 @@ async function wikiText(title) {
     
         const response = await fetch(endpoint);
         const dataText = await response.json();
-        // const pageID = Object.keys(dataText.query.pages)[0];
         console.log(dataText.extracted);
-        // const extracted = dataText.query.pages[pageID].extract;
-        // console.log(extracted);
         return dataText.extracted;
     }
     catch(error) {
@@ -40,7 +37,11 @@ async function wikiText(title) {
     }
   };
 
-  function displayWiki(titles, description, urls) {
+
+
+// * Display Search Results as cards 
+
+function displayWiki(titles, descriptions, urls) {
     const searchResults = document.getElementById('searchResults');
     searchResults.innerHTML = '';
   
