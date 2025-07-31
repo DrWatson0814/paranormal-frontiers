@@ -30,7 +30,7 @@ async function youtubeFetch() {
             }
         });
     } catch (error) {
-        console.error("Couldn't fetch videos")
+        console.error("Couldn't fetch videos", error)
     }
 };
 
@@ -103,3 +103,78 @@ function stopVideo() {
 };
 
 document.addEventListener('DOMContentLoaded', fetchHauntedPlace);
+
+
+
+
+// * Wiki Search Function 
+
+document.addEventListener('DomContentLoaded', () => {
+    const searchTerm = document.getElementById('searchTerm');
+    const searchBtn = document.getElementById('SearchBtn');
+    const searchResults = document.getElementById('searchResults');
+});
+
+    const endpoint = `https://en.wikipedia.org/w/api.php?action=opensearch&srsearch=${searchTerm}&limit=5&format=json`
+    
+    
+//     //* Wikipedia API Fetch
+    
+
+    async function wikiSearch(searchTerm) {
+  var endpoint = "https://en.wikipedia.org/w/api.php";
+  var params = new URLSearchParams({
+    action: "query",
+    list: "search",
+    srsearch: searchTerm, //! Need Variable to insert search query !//
+    format: "json",
+    origin: '', //? May Change BeCAU of CORS ?//
+    });
+}
+
+try {
+    const response = await fetch(`${endpoint},?${params.toString()}`);
+    const data = await response.json();
+    console.log("Search Results:", data.query.search);
+    return data.query.search;
+  } catch (error) {
+      console.error("Paranormal Interference - Search Failed", error);
+    };
+
+wikiSearch()
+
+document.addEventListener(onclick, () => {
+    
+})
+
+
+
+async function wikiText(searchResults) {
+    const endpoint = "https://en.wikipedia.org/w/api.php?";
+    const params = new URLSearchParams({
+        action: 'query',
+        prop: 'extracts',
+        titles: searchResults,
+        exintro: true,
+        explaintext: true,
+        format: 'json',
+        origin: '*',
+        redirects: -1
+    });
+    
+    try {
+        const response = await fetch(`${endpoint}?${params.toString}`);
+        const dataText = await response.json();
+        const pageID = Object.keys(dataText.query.pages)[0];
+        const extracted = dataText.query.pages[pageID].extracted;
+        console.log(extracted);
+        return extracted;
+    }
+    catch(error) {
+        console.error("Paranormal Interference - Text Extraction Failed", error);
+    }
+    
+};
+
+
+wikiText();

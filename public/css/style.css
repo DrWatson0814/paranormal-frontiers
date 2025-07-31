@@ -97,6 +97,14 @@ iframe {
 }
 
 
+/* Research Page */
+
+
+.searchResults {
+    background-image: url('/public/js/search.js');
+    height: 100px;
+}
+
 
 
 

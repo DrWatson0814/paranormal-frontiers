@@ -87,14 +87,14 @@ app.get('/api/v1/fetchVideos', async (request, response) => {
 //* Wikipedia API Fetch
 
 
-async function wikiSearch(searchQuery) {
+async function wikiSearch(searchTerm) {
   var endpoint = "https://en.wikipedia.org/w/api.php";
   var params = new URLSearchParams({
     action: "query",
     list: "search",
-    srsearch: searchQuery, //! Need Variable to insert search query !//
+    srsearch: searchTerm, //! Need Variable to insert search query !//
     format: "json",
-    origin: location.origin, //? May Change BeCAU of CORS ?//
+    origin: '*', //? May Change BeCAU of CORS ?//
   });
 
   try {
@@ -103,17 +103,19 @@ async function wikiSearch(searchQuery) {
     console.log("Search Results:", data.query.search);
     return data.query.search;
   } catch (error) {
-    console.error("Paranormal Interference - Search Failed", error);
+    console.error("Paranormal Interference - Search Failed ", error);
   }
 }
 
 
-async function wikiText(wikiTitle) {
-    const endpoint = "https://en.wikipedia.org/w/api.php";
+
+
+async function wikiText(searchResults) {
+    const endpoint = "https://en.wikipedia.org/w/api.php?";
     const params = new URLSearchParams({
         action: 'query',
         prop: 'extracts',
-        titles: wikiTitle,
+        titles: searchResults,
         exintro: true,
         explaintext: true,
         format: 'json',
