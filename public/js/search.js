@@ -2,25 +2,19 @@
 
 
 async function wikiSearch(searchTerm) {
-  const endpoint = `https://en.wikipedia.org/w/api.php?action=opensearch&srsearch=encodedURIComponent${searchTerm}&limit=5&format=json`;
-  // var params = new URLSearchParams({
-  //   action: "=query&",
-  //   list: "search",
-  //   srsearch: searchTerm, //! Need Variable to insert search query !//
-  //   format: "json",
-  //   origin: '*', //? May Change BeCAU of CORS ?//
-  // });
-
   try {
+    const endpoint = '/api/v1/wikiSearch?searchTerm=' + encodeURIComponent(searchTerm);
+
     const response = await fetch(endpoint);
     const data = await response.json();
     console.log("Search Results:", data);
 
     const  titles = data[1];
-    const  description = data[2];
+    const  descriptions = data[2];
     const urls = data[3];
 
-    return data;
+    displayWiki(titles, descriptions, urls);
+  
   } catch (error) {
     console.error("Paranormal Interference - Search Failed", error);
   }
@@ -29,26 +23,17 @@ async function wikiSearch(searchTerm) {
 
 
 
-async function wikiText(searchResults) {
-    const endpoint = `https://en.wikipedia.org/w/api.php?action='query'&prop='extracts'&titles=${title}&format='json'&origin='*'`;
-    // const params = new URLSearchParams({
-    //     action: 'query',
-    //     prop: 'extracts',
-    //     titles: searchResults,
-    //     exintro: true,
-    //     explaintext: true,
-    //     format: 'json',
-    //     origin: '*',
-    //     redirects: -1
-    // });
+async function wikiText(title) {
+  try {
+        const endpoint = 'https://localhost:8080/api/v1/wikiText' + encodeURIComponent(title);
     
-    try {
         const response = await fetch(endpoint);
         const dataText = await response.json();
-        const pageID = Object.keys(dataText.query.pages)[0];
-        const extracted = dataText.query.pages[pageID].extract;
-        console.log(extracted);
-        return extracted;
+        // const pageID = Object.keys(dataText.query.pages)[0];
+        console.log(dataText.extracted);
+        // const extracted = dataText.query.pages[pageID].extract;
+        // console.log(extracted);
+        return dataText.extracted;
     }
     catch(error) {
         console.error("Paranormal Interference - Text Extraction Failed", error);
@@ -56,7 +41,7 @@ async function wikiText(searchResults) {
   };
 
   function displayWiki(titles, description, urls) {
-    const searchResults = document.getElementsByClassName('searchResults');
+    const searchResults = document.getElementById('searchResults');
     searchResults.innerHTML = '';
   
     const ul = document.createElement('ul');
@@ -65,9 +50,11 @@ async function wikiText(searchResults) {
     for(let i = 0; i < titles.length; i++) {
       const li = document.createElement('li');
       const a = document.createElement('a');
-      a.href = urls[1];
+      const p = document.createElement('p');
+      a.href = urls[i];
       a.target = '_blank'; 
-      a.textContent = 'resultList';
+      a.textContent = titles[i];
+      p.textContent = descriptions[i];
 
       li.appendChild(a);
       li.appendChild(p);
@@ -76,9 +63,9 @@ async function wikiText(searchResults) {
     searchResults.appendChild(ul);
   };
 
-document.addEventListener('DomContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     var  searchTermInput = document.getElementById('searchTerm');
-    var searchBtn = document.getElementById('SearchBtn');
+    var searchBtn = document.getElementById('searchBtn');
 
     searchBtn.addEventListener('click', () => {
       const searchTerm = searchTermInput.value.trim();
@@ -89,7 +76,7 @@ document.addEventListener('DomContentLoaded', () => {
       }
     });
     
-    searchTerm.addEventListener('keypress', (event) => {
+    searchTermInput.addEventListener('keypress', (event) => {
       if(event.key === 'Enter') {
         wikiSearch(searchTerm);      }
     });

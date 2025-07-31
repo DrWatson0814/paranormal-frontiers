@@ -19,6 +19,9 @@ app.use(json());
 app.use(urlencoded({extended: false}));
 
 
+
+// * Haunted Places Fetch
+
 async function getHauntedPlace() {
     const endpoint = './public/haunted_places.csv';
     const hauntedPlaces = [];
@@ -35,8 +38,6 @@ async function getHauntedPlace() {
 };
         
 
-
-// * Haunted Places Fetch
 
 app.get('/api/v1/getHauntedPlace', async (request, response) => {
     try {
@@ -87,44 +88,30 @@ app.get('/api/v1/fetchVideos', async (request, response) => {
 //* Wikipedia API Fetch
 
 
-async function wikiSearch(searchTerm) {
-  var endpoint = "https://en.wikipedia.org/w/api.php";
-  var params = new URLSearchParams({
-    action: "query",
-    list: "search",
-    srsearch: searchTerm, //! Need Variable to insert search query !//
-    format: "json",
-    origin: '*', //? May Change BeCAU of CORS ?//
-  });
-
-  try {
-    const response = await fetch(`${endpoint},?${params.toString()}`);
-    const data = await response.json();
-    console.log("Search Results:", data.query.search);
-    return data.query.search;
-  } catch (error) {
+// async function wikiSearch(searchTerm) {
+  
+app.get('/api/v1/wikiSearch', async (request, response) => {
+    try {
+        const searchTerm = request.query.searchTerm
+        const endpoint =  `https://en.wikipedia.org/w/api.php?action=opensearch&srsearch=${searchTerm}&limit=5&format=json&origin=*`;
+    
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        
+        response.status(200).json(data);
+    } catch (error) {
     console.error("Paranormal Interference - Search Failed ", error);
-  }
 }
 
+});
 
 
 
-async function wikiText(searchResults) {
-    const endpoint = "https://en.wikipedia.org/w/api.php?";
-    const params = new URLSearchParams({
-        action: 'query',
-        prop: 'extracts',
-        titles: searchResults,
-        exintro: true,
-        explaintext: true,
-        format: 'json',
-        origin: '*',
-        redirects: -1
-    });
-
+async function wikiText(title) {
     try {
-        const response = await fetch(`${endpoint}?${params.toString}`);
+        const endpoint = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=${title}&format=json&origin=https://localhost:8080';
+
+        const response = await fetch(endpoint);
         const dataText = await response.json();
         const pageID = Object.keys(dataText.query.pages)[0];
         const extracted = dataText.query.pages[pageID].extracted;
@@ -137,8 +124,25 @@ async function wikiText(searchResults) {
 
 }
 
-wikiText();
+app.get('/api/v1/wikiText', async (request, response) => {
+        try {
+        const title = request.query.title;
+        const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=${encodedURIComponent(title)}&format=json&origin=https://localhost:8080`;
 
+        const response = await fetch(endpoint);
+        const dataText = await response.json();
+        const pageID = Object.keys(dataText.query.pages)[0];
+        const extracted = dataText.query.pages[pageID].extract;
+        
+        response.status(200).json({extracted: extracted});
+    }
+    catch(error) {
+        console.error("Paranormal Interference - Text Extraction Failed", error);
+    }
+
+
+
+})
 
 
 
