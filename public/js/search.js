@@ -3,7 +3,7 @@
 
 async function wikiSearch(searchTerm) {
   try {
-    const endpoint = '/api/v1/wikiSearch?searchTerm=' + encodeURIComponent(searchTerm);
+    const endpoint = '/api/v1/wikiSearch?searchTerm' + encodeURIComponent(searchTerm);
 
     const response = await fetch(endpoint);
     const data = await response.json();

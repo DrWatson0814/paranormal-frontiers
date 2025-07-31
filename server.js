@@ -14,7 +14,7 @@ const app = express();
 const PORT = 8080;
 
 app.use(cors());
-app.use(express.static("public"));
+app.use(express.static('/public'));
 app.use(json());
 app.use(urlencoded({extended: false}));
 
@@ -88,12 +88,11 @@ app.get('/api/v1/fetchVideos', async (request, response) => {
 //* Wikipedia API Fetch
 
 
-// async function wikiSearch(searchTerm) {
   
 app.get('/api/v1/wikiSearch', async (request, response) => {
     try {
-        const searchTerm = request.query.searchTerm
-        const endpoint =  `https://en.wikipedia.org/w/api.php?action=opensearch&srsearch=${searchTerm}&limit=5&format=json&origin=*`;
+        const searchTerm = request.query.searchTerm;
+        const endpoint =  `https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=5&format=json&origin=*`;
     
         const response = await fetch(endpoint);
         const data = await response.json();
@@ -109,7 +108,7 @@ app.get('/api/v1/wikiSearch', async (request, response) => {
 app.get('/api/v1/wikiText', async (request, response) => {
         try {
         const title = request.query.title;
-        const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=${encodedURIComponent(title)}&format=json&origin=https://localhost:8080`;
+        const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=${encodedURIComponent(title)}&format=json&origin=*`;
 
         const response = await fetch(endpoint);
         const dataText = await response.json();
