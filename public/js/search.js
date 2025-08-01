@@ -3,7 +3,7 @@
 
 async function wikiSearch(searchTerm) {
   try {
-    const endpoint = '/api/v1/wikiSearch?searchTerm' + encodeURIComponent(searchTerm);
+    const endpoint = '/api/v1/wikiSearch?searchTerm=' + encodeURIComponent(searchTerm);
 
     const response = await fetch(endpoint);
     const data = await response.json();
@@ -25,7 +25,7 @@ async function wikiSearch(searchTerm) {
 
 async function wikiText(title) {
   try {
-        const endpoint = 'https://localhost:8080/api/v1/wikiText' + encodeURIComponent(title);
+        const endpoint = '/api/v1/wikiText?title=' + encodeURIComponent(title);
     
         const response = await fetch(endpoint);
         const dataText = await response.json();
@@ -79,6 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     searchTermInput.addEventListener('keypress', (event) => {
       if(event.key === 'Enter') {
-        wikiSearch(searchTerm);      }
+        const searchTerm = searchTermInput.value.trim();
+        if(searchTerm) {
+          wikiSearch(searchTerm);      
+        }
+
+        }
     });
 });

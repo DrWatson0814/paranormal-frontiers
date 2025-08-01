@@ -18,7 +18,7 @@ async function youtubeFetch() {
         iframe.frameBorder = "0";
         iframe.allow =
           "autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        iframe.allowFullscreencreen = "true";
+        iframe.allowFullscreen = "true";
 
         videoDiv.appendChild(iframe);
       }

@@ -14,7 +14,7 @@ const app = express();
 const PORT = 8080;
 
 app.use(cors());
-app.use(express.static('/public'));
+app.use(express.static("/public"));
 app.use(json());
 app.use(urlencoded({extended: false}));
 
@@ -94,8 +94,8 @@ app.get('/api/v1/wikiSearch', async (request, response) => {
         const searchTerm = request.query.searchTerm;
         const endpoint =  `https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=5&format=json&origin=*`;
     
-        const response = await fetch(endpoint);
-        const data = await response.json();
+        const apiResponse= await fetch(endpoint);
+        const data = await apiResponse.json();
         
         response.status(200).json(data);
     } catch (error) {
@@ -108,10 +108,10 @@ app.get('/api/v1/wikiSearch', async (request, response) => {
 app.get('/api/v1/wikiText', async (request, response) => {
         try {
         const title = request.query.title;
-        const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=${encodedURIComponent(title)}&format=json&origin=*`;
+        const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=${encodeURIComponent(title)}&format=json&origin=*`;
 
-        const response = await fetch(endpoint);
-        const dataText = await response.json();
+        const apiResponse= await fetch(endpoint);
+        const dataText = await apiResponse.json();
         const pageID = Object.keys(dataText.query.pages)[0];
         const extracted = dataText.query.pages[pageID].extract;
         
