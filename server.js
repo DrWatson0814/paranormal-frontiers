@@ -14,7 +14,7 @@ const app = express();
 const PORT = 8080;
 
 app.use(cors());
-app.use(express.static("/public"));
+app.use(express.static("public"));
 app.use(json());
 app.use(urlencoded({extended: false}));
 
@@ -92,7 +92,7 @@ app.get('/api/v1/fetchVideos', async (request, response) => {
 app.get('/api/v1/wikiSearch', async (request, response) => {
     try {
         const searchTerm = request.query.searchTerm;
-        const endpoint =  `https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&limit=5&format=json&origin=*`;
+        const endpoint =  `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${searchTerm}&limit=5&format=json&origin=*`;
     
         const apiResponse= await fetch(endpoint);
         const data = await apiResponse.json();

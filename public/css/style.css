@@ -30,7 +30,7 @@ body {
     grid-row: 1;
     min-height: 100%;
     margin: 0 0 9p0x 0;
-    border: 2px solid  #dd0808;
+    /* border: 2px solid  #dd0808; */
     align-content: left;
     background: url("../img/cropped-logo.png") no-repeat center center / contain;
     display: flex;
@@ -105,6 +105,14 @@ iframe {
     height: 100px;
 }
 
-
+.resultList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.wikiCard {
+    border: 2px white solid;
+    background-color: white;
+}
 
 

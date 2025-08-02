@@ -3,17 +3,15 @@
 
 async function wikiSearch(searchTerm) {
   try {
-    const endpoint = '/api/v1/wikiSearch?searchTerm=' + encodeURIComponent(searchTerm);
+    const endpoint = 'http://localhost:8080/api/v1/wikiSearch?searchTerm=' + encodeURIComponent(searchTerm);
 
     const response = await fetch(endpoint);
     const data = await response.json();
     console.log("Search Results:", data);
 
-    const  titles = data[1];
-    const  descriptions = data[2];
-    const urls = data[3];
+    const searchResults = data.query.search;
 
-    displayWiki(titles, descriptions, urls);
+    displayWiki(searchResults);
   
   } catch (error) {
     console.error("Paranormal Interference - Search Failed", error);
@@ -41,32 +39,38 @@ async function wikiText(title) {
 
 // * Display Search Results as cards 
 
-function displayWiki(titles, descriptions, urls) {
-    const searchResults = document.getElementById('searchResults');
-    searchResults.innerHTML = '';
+function displayWiki(searchResults) {
+    const searchResultsList = document.getElementById('searchResults');
+    searchResultsList.innerHTML = " ";
   
     const ul = document.createElement('ul');
     ul.className = 'resultList';
 
-    for(let i = 0; i < titles.length; i++) {
+    searchResults.forEach(result => {
+
       const li = document.createElement('li');
+      li.className = 'wikiCard';
       const a = document.createElement('a');
       const p = document.createElement('p');
-      a.href = urls[i];
+      a.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(result.title)}`;
       a.target = '_blank'; 
-      a.textContent = titles[i];
-      p.textContent = descriptions[i];
-
+      a.textContent = result.title;
+      p.textContent = result.snippet;
+      
       li.appendChild(a);
       li.appendChild(p);
       ul.appendChild(li);
-    }
-    searchResults.appendChild(ul);
+    });
+    searchResultsList.appendChild(ul);
   };
 
+
+
+// * Event Listener
+
 document.addEventListener('DOMContentLoaded', () => {
-    var  searchTermInput = document.getElementById('searchTerm');
-    var searchBtn = document.getElementById('searchBtn');
+    const  searchTermInput = document.getElementById('searchTerm');
+    const searchBtn = document.getElementById('searchBtn');
 
     searchBtn.addEventListener('click', () => {
       const searchTerm = searchTermInput.value.trim();
