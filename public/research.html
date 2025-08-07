@@ -15,29 +15,23 @@
   <body>
     <header class="header"></header>
     <nav class="nav-btn-grp">
-      <ul>
-        <li class="btn-home">Home</li>
-        <li class="btn-gear">Gear</li>
-        <li class="btn-investigation">Investigate</li>
-        <li class="btn-research">Research</li>
-      </ul>
+        <ul>
+          <a class="btn-home"  href="/index.html">Home</a>
+          <a class="btn-gear" href="/gear.html">Gear</a>                               <!--! Need to add target page  -->
+          <a class="btn-investigation" href="/investigation.html">Investigation</a>       <!--! Need to add target page  -->
+          <a class="btn-research" href="/research.html">Research</a>
+        </ul>
     </nav>
     <main class="main-container">
       <div id="research-intro-div">
         <h2 id="research-title">Paranormal Research</h2>
-        <p id="research-intro-text">Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.</p>
+        <!-- <p id="research-intro-text">Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.</p> -->
       </div>
-      <div id="search-bar-function">
-        <input
-          type="text"
-          id="searchTerm"
-          placeholder="Enter Paranormal Query..."
-        >
-        <button id="searchBtn">Begin</button>
-      </div>
+      <input type="text" id="searchTerm" placeholder="Enter Paranormal Query...">
+      <button id="searchBtn">Begin</button>
       <div id="searchResults"></div>
     </main>
-    <footer class="footer"></footer>
+    <footer class="footer">Paranormal Frontiers, All Rights Reserved ©2025</footer>
     <script src="/js/search.js"></script>
   </body>
 </html>

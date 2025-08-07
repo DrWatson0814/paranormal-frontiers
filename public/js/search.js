@@ -41,7 +41,7 @@ async function wikiText(title) {
 
 function displayWiki(searchResults) {
     const searchResultsList = document.getElementById('searchResults');
-    searchResultsList.innerHTML = " ";
+    searchResultsList.innerHTML = "";
   
     const ul = document.createElement('ul');
     ul.className = 'resultList';
@@ -51,11 +51,11 @@ function displayWiki(searchResults) {
       const li = document.createElement('li');
       li.className = 'wikiCard';
       const a = document.createElement('a');
-      const p = document.createElement('p');
+      const p = document.createElement('p')
       a.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(result.title)}`;
       a.target = '_blank'; 
       a.textContent = result.title;
-      p.textContent = result.snippet;
+      p.innerHTML = result.snippet;
       
       li.appendChild(a);
       li.appendChild(p);
@@ -85,9 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if(event.key === 'Enter') {
         const searchTerm = searchTermInput.value.trim();
         if(searchTerm) {
-          wikiSearch(searchTerm);      
-        }
-
-        }
+          wikiSearch(searchTerm);
+      } else {
+        alert("Please enter relevent search term...")
+      }      
+      }
     });
 });
