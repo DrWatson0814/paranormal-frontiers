@@ -30,42 +30,6 @@ async function youtubeFetch() {
 
 document.addEventListener("DOMContentLoaded", youtubeFetch);
 
-// var player;
-
-// function onYoutubeIframeAPIReady() {
-//   player = new YT.Player("player", {
-//     height: "390",
-//     width: "640",
-//     videoId: "v6RWSfGiDuQ",
-//     playerVars: {
-//       playsinline: 1,
-//       autoplay: 0,
-//       controls: 1,
-//       showInfo: 0,
-//       rel: 0,
-//     },
-//     events: {
-//       onReady: onPlayerReady,
-//       onStateChange: onPlayerStateChange,
-//     },
-//   });
-// }
-
-// function onPlayerReady(event) {
-//   event.target.playVideo();
-// }
-
-// let done = false;
-// function onPlayerStateChange() {
-//   if (event.data == YT.PlayerState.PLAYING && !done) {
-//     setTimeout(stopVideo, 6000);
-//     done = true;
-//   }
-// }
-
-// function stopVideo() {
-//   player.stopVideo();
-// }
 
 //* New Place on Refresh //
 
