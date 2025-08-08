@@ -30,42 +30,42 @@ async function youtubeFetch() {
 
 document.addEventListener("DOMContentLoaded", youtubeFetch);
 
-var player;
+// var player;
 
-function onYoutubeIframeAPIReady() {
-  player = new YT.Player("player", {
-    height: "390",
-    width: "640",
-    videoId: "v6RWSfGiDuQ",
-    playerVars: {
-      playsinline: 1,
-      autoplay: 0,
-      controls: 1,
-      showInfo: 0,
-      rel: 0,
-    },
-    events: {
-      onReady: onPlayerReady,
-      onStateChange: onPlayerStateChange,
-    },
-  });
-}
+// function onYoutubeIframeAPIReady() {
+//   player = new YT.Player("player", {
+//     height: "390",
+//     width: "640",
+//     videoId: "v6RWSfGiDuQ",
+//     playerVars: {
+//       playsinline: 1,
+//       autoplay: 0,
+//       controls: 1,
+//       showInfo: 0,
+//       rel: 0,
+//     },
+//     events: {
+//       onReady: onPlayerReady,
+//       onStateChange: onPlayerStateChange,
+//     },
+//   });
+// }
 
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
+// function onPlayerReady(event) {
+//   event.target.playVideo();
+// }
 
-let done = false;
-function onPlayerStateChange() {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
-}
+// let done = false;
+// function onPlayerStateChange() {
+//   if (event.data == YT.PlayerState.PLAYING && !done) {
+//     setTimeout(stopVideo, 6000);
+//     done = true;
+//   }
+// }
 
-function stopVideo() {
-  player.stopVideo();
-}
+// function stopVideo() {
+//   player.stopVideo();
+// }
 
 //* New Place on Refresh //
 
@@ -81,10 +81,14 @@ async function fetchHauntedPlace() {
   const hauntedDiv = document.querySelector(".haunted");
   if (currentPlace) {
     hauntedDiv.innerHTML = `
-        <h3>Location:${currentPlace.city}, ${currentPlace.state}</h3>
-        <p>${currentPlace.description}</p>
-        `;
+    <h3>Location:${currentPlace.city}, ${currentPlace.state}</h3>
+    <p>${currentPlace.description}</p>`;
   }
-}
+  if(currentPlace.city === undefined || currentPlace.state === undefined || currentPlace.description === undefined) {
+    return fetchHauntedPlace();
+  } 
+
+  }
+  
 
 document.addEventListener("DOMContentLoaded", fetchHauntedPlace);

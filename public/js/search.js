@@ -11,7 +11,7 @@ async function wikiSearch(searchTerm) {
 
     const searchResults = data.query.search;
 
-    displayWiki(searchResults);
+      displayWiki(searchResults);
   
   } catch (error) {
     console.error("Paranormal Interference - Search Failed", error);
@@ -56,6 +56,7 @@ function displayWiki(searchResults) {
       a.target = '_blank'; 
       a.textContent = result.title;
       p.innerHTML = result.snippet;
+
       
       li.appendChild(a);
       li.appendChild(p);
