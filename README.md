@@ -9,7 +9,7 @@ Paranormal Frontiers is meant to be used as central hub for the preparation, exe
 ## <u>Installation Instructions:</u>
 1. You must have Node.js installed.
 2. Open a terminal, and navigate to, or create a directory you wish to contain the repo.
-3. Once in the inside the desired directory, use the command `git clone` followed by this url, "https://github.com/DrWatson0814/           paranormal-frontiers.git".
+3. Once in the inside the desired directory, use the command `git clone` followed by this url, https://github.com/DrWatson0814/paranormal-frontiers.git".
 4. After the repo as been cloned, in your terminal, enter the command `npm install`. This will install the needed dependencies.
 5. Next, in the terminal, enter the command `npm run dev`. This will start the web server.
 6. Finally, open the browser of your choice and in the address bar input, localhost:8080 and press enter.
